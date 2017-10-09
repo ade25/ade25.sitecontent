@@ -8,9 +8,11 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ade25.sitecontent">
 
+    <!-- section folder views -->
+
   <browser:page
       for="ade25.sitecontent.sectionfolder.ISectionFolder"
-      name="sectionfolder-view"
+      name="section- folder-view"
       class=".sectionfolder.SectionFolderView"
       template="sectionfolder.pt"
       permission="zope2.View"
@@ -21,7 +23,7 @@
 
   <browser:page
       for="ade25.sitecontent.contentpage.IContentPage"
-      name="contentpage-view"
+      name="content-page-view"
       class=".contentpage.ContentPageView"
       template="contentpage.pt"
       permission="zope2.View"

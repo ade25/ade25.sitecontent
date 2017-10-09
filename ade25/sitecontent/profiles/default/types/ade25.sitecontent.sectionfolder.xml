@@ -29,7 +29,7 @@
   <!-- View information -->
   <property name="link_target"></property>
   <property name="immediate_view">view</property>
-  <property name="default_view">sectionfolder-view</property>
+  <property name="default_view">section-folder-view</property>
   <property name="view_methods">
    <element value="sectionfolder-view"/>
   </property>

@@ -15,7 +15,7 @@
     <element value="ade25.sitecontent.contentpage" />
     <element value="Image" />
   </property>
-  <property name="allow_discussion">True</property>
+  <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
   <property name="schema">ade25.sitecontent.contentpage.IContentPage</property>
@@ -25,13 +25,13 @@
      <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
      <element value="plone.app.contenttypes.behaviors.richtext.IRichText" />
-    <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
+     <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
    </property>
 
   <!-- View information -->
   <property name="link_target"></property>
   <property name="immediate_view">view</property>
-  <property name="default_view">contentpage-view</property>
+  <property name="default_view">content-page-view</property>
   <property name="view_methods">
    <element value="contentpage-view"/>
   </property>
