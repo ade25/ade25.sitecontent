@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="ade25.sitecontent"
+    interface="ade25.sitecontent.interfaces.IAde25SitecontentLayer"
+  />
+</layers>

@@ -1,0 +1,29 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:five="http://namespaces.zope.org/five"
+        xmlns:i18n="http://namespaces.zope.org/i18n"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="ade25.sitecontent">
+
+    <adapter
+            name="is_promoted"
+            factory="ade25.sitecontent.indexers.content_page_is_promoted" />
+
+    <adapter
+            name="is_featured"
+            factory="ade25.sitecontent.indexers.content_page_is_featured" />
+
+
+    <!-- Searchable Text Indexer
+
+    NOTE:
+    This should only be enabled if full text search is needed by the project
+    to avoid unnecessary database bloat
+
+    <adapter
+            name="SearchableText"
+            factory="ade25.sitecontent.indexers.searchable_text_content_page" />
+    -->
+
+
+</configure>

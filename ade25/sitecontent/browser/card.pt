@@ -1,0 +1,29 @@
+<div class="app-card app-card--default app-card--${context/UID}">
+    <div class="app-card__header" tal:condition="python:view.has_image()">
+        <div class="app-card__figure"
+                 tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', lqip=True, lazy_load=True)">
+            <a class="app-card__link app-card__link--figure" href="${context/absolute_url}">
+                <span tal:replace="structure responsive_image" />
+            </a>
+        </div>
+    </div>
+    <div class="app-card__main">
+        <div class="app-card__section">
+            <div class="app-card__title">
+                <a class="app-card__link" href="${context/absolute_url}">
+                        ${context/Title}
+                </a>
+            </div>
+            <div class="app-card__abstract" tal:condition="context/Description">
+                <a class="app-card__link" href="${context/absolute_url}">
+                        ${context/Description}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="app-card__footer">
+        <a class="app-card__link" href="${context/absolute_url}">
+            mehr&hellip;
+        </a>
+    </div>
+</div>

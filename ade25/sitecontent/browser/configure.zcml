@@ -1,0 +1,88 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="ade25.sitecontent">
+
+  <browser:page
+      for="ade25.sitecontent.sectionfolder.ISectionFolder"
+      name="sectionfolder-view"
+      class=".sectionfolder.SectionFolderView"
+      template="sectionfolder.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+  <!-- Content page views -->
+
+  <browser:page
+      for="ade25.sitecontent.contentpage.IContentPage"
+      name="contentpage-view"
+      class=".contentpage.ContentPageView"
+      template="contentpage.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+  <!-- Content page preview card -->
+  <browser:page
+      for="ade25.sitecontent.contentpage.IContentPage"
+      name="card-view"
+      class=".contentpage.CardView"
+      template="card.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+  <browser:page
+      for="ade25.sitecontent.contentpage.IContentPage"
+      name="card-preview"
+      class=".contentpage.CardPreview"
+      template="cardpreview.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+  <!-- Content page image gallery -->
+  <browser:page
+      for="ade25.sitecontent.contentpage.IContentPage"
+      name="gallery-view"
+      class=".contentpage.GalleryView"
+      template="galleryview.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+  <browser:page
+      for="ade25.sitecontent.contentpage.IContentPage"
+      name="gallery-preview"
+      class=".contentpage.GalleryPreview"
+      template="gallerypreview.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+  <!-- Frontpage Views -->
+  <browser:page
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="frontpage-view"
+      class=".frontpage.FrontPageView"
+      template="frontpage.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+      />
+
+    <browser:page
+       for="plone.app.layout.navigation.interfaces.INavigationRoot"
+       name="nav-tree-view"
+       class=".navigation.SiteNavigation"
+       template="navigation.pt"
+       permission="zope2.View"
+       layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+</configure>
