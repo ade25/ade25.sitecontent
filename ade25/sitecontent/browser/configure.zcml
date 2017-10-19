@@ -31,6 +31,15 @@
       layer="..interfaces.IAde25SitecontentLayer"
       />
 
+  <browser:page
+      for="ade25.sitecontent.contentpage.IContentPage"
+      name="content-page-base"
+      class=".contentpage.ContentPageBaseContent"
+      template="contentpage-base.pt"
+      permission="zope2.View"
+      layer="..interfaces.IAde25SitecontentLayer"
+  />
+
   <!-- Content page preview card -->
   <browser:page
       for="ade25.sitecontent.contentpage.IContentPage"

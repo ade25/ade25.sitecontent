@@ -79,39 +79,40 @@ class ContentPageView(BrowserView):
         template = context.restrictedTraverse('@@gallery-view')()
         return template
 
-    def get_image_data(self, uuid):
-        tool = getUtility(IResponsiveImagesTool)
-        return tool.create(uuid)
 
-    def image_data(self):
-        data = {}
-        sizes = ['small', 'medium', 'large']
-        idx = 0
-        for size in sizes:
-            idx += 0
-            img = self._get_scaled_img(size)
-            data[size] = '{0} {1}w'.format(img['url'], img['width'])
-        return data
+class ContentPageBaseContent(BrowserView):
+    """Preview content page base content"""
 
-    def _get_scaled_img(self, size):
+    def __call__(self):
+        return self.render()
+
+    def render(self):
+        return self.index()
+
+    def has_leadimage(self):
         context = aq_inner(self.context)
-        scales = getMultiAdapter((context, self.request), name='images')
-        if size == 'small':
-            scale = scales.scale('image', width=300, height=300)
-        if size == 'medium':
-            scale = scales.scale('image', width=600, height=600)
-        else:
-            scale = scales.scale('image', width=900, height=900)
-        item = {}
-        if scale is not None:
-            item['url'] = scale.url
-            item['width'] = scale.width
-            item['height'] = scale.height
-        else:
-            item['url'] = IMG
-            item['width'] = '1px'
-            item['height'] = '1px'
-        return item
+        try:
+            lead_img = context.image
+        except AttributeError:
+            lead_img = None
+        if lead_img is not None:
+            return True
+        return False
+
+    def display_gallery(self):
+        context = aq_inner(self.context)
+        try:
+            display = context.displayGallery
+        except AttributeError:
+            display = None
+        if display is not None:
+            return display
+        return False
+
+    def rendered_gallery(self):
+        context = aq_inner(self.context)
+        template = context.restrictedTraverse('@@gallery-view')()
+        return template
 
 
 class CardView(BrowserView):
