@@ -3,76 +3,55 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="ade25.sitecontent">
+         metal:use-macro="context/main_template/macros/master"
+         i18n:domain="ade25.sitecontent">
 <body>
 
 <metal:main fill-slot="main">
-  <metal:content-core define-macro="main">
+    <metal:content-core define-macro="main">
 
-    <div class="app-page-header app-page__header">
-      <div class="app-page__title">
-          <h1 class="app-page__headline">
-            ${context/Title}
-          </h1>
-      </div>
-      <p class="app-page__abstract" tal:condition="context/Description">
-          ${context/Description}
-      </p>
-    </div>
-    <div class="app-page-body">
-
-      <tal:gallery tal:condition="view/display_gallery">
-        <div tal:replace="structure view/rendered_gallery" />
-      </tal:gallery>
-
-      <tal:nogallery tal:condition="not:view/display_gallery">
-        <div class="app-page-leadimage" tal:condition="view/has_leadimage">
-          <figure class="app-page-image-container"
-              tal:define="item_uuid context/UID;
-                          image_data python:view.get_image_data(item_uuid)">
-              <div class="app-lazyload-container">
-                <img class="image--lazy-load lazy-load"
-                    src="${image_data/lqip}"
-                    data-src="${image_data/large}"
-                    data-sizes="auto"
-                    data-parent-fit="contain"
-                    data-srcset="${image_data/small},
-                                 ${image_data/medium},
-                                 ${image_data/large},
-                                 ${image_data/original}" />
-              </div>
-              <noscript>
-                <!-- Provide fallback for missing lazyload javascript -->
-                <img tal:define="has_img item/image|nothing;
-                                 scales item/@@images|nothing"
-                    tal:condition="python:has_img and scales"
-                    tal:replace="structure python: scales.scale('image', scale='mini').tag(css_class='newsImage')" />
-              </noscript>
-            <figcaption tal:condition="exists:item/image_caption">
-              ${item/image_caption}
-            </figcaption>
-          </figure>
+        <div class="app-page-header app-page__header">
+            <div class="app-page__title">
+                <h1 class="app-page__headline">
+                        ${context/Title}
+                </h1>
+            </div>
+            <p class="app-page__abstract" tal:condition="context/Description">
+                    ${context/Description}
+            </p>
         </div>
-      </tal:nogallery>
+        <div class="app-page-body">
 
-      <div class="app-page-text" id="parent-fieldname-text"
-        tal:condition="context/text"
-        tal:content="structure context/text/output" />
+            <tal:gallery tal:condition="view/display_gallery">
+                <div tal:replace="structure view/rendered_gallery" />
+            </tal:gallery>
 
-      <div class="app-page-cards" tal:condition="view/display_cards">
-        <div class="app-cards app-card-gutter app-cards-page-previews" tal:condition="view/has_contained_pages">
-          <tal:block tal:repeat="content_page view/contained_pages">
-            <div tal:define="page_uid content_page/UID"
-              tal:replace="structure python:view.rendered_card(uuid=page_uid)" />
-          </tal:block>
+            <tal:nogallery tal:condition="not:view/display_gallery">
+                <div class="app-page-leadimage" tal:condition="view/has_leadimage">
+                    <div class="app-page__asset"
+                             tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field_name='image_caption', scale='default', lqip=True, lazy_load=True)">
+                        <span tal:replace="structure responsive_image" />
+                    </div>
+                </div>
+            </tal:nogallery>
+
+            <div class="app-page-text" id="parent-fieldname-text"
+                     tal:condition="context/text"
+                     tal:content="structure context/text/output" />
+
+            <div class="app-page-cards" tal:condition="view/display_cards">
+                <div class="app-cards app-card-gutter app-cards-page-previews" tal:condition="view/has_contained_pages">
+                    <tal:block tal:repeat="content_page view/contained_pages">
+                        <div tal:define="page_uid content_page/UID"
+                                 tal:replace="structure python:view.rendered_card(uuid=page_uid)" />
+                    </tal:block>
+
+                </div>
+            </div>
 
         </div>
-      </div>
 
-    </div>
-
-  </metal:content-core>
+    </metal:content-core>
 </metal:main>
 
 </body>

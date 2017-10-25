@@ -12,8 +12,7 @@
 
   <browser:page
       for="ade25.sitecontent.sectionfolder.ISectionFolder"
-      name="section-
-      folder-view"
+      name="section-folder-view"
       class=".sectionfolder.SectionFolderView"
       template="sectionfolder.pt"
       permission="zope2.View"
