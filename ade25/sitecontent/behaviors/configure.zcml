@@ -16,8 +16,8 @@
     marker=".gallery.IGalleryEnabled"
     />
   <plone:behavior
-          title="Display Size Options"
-          description="Adds a selection for element display sizes"
+          title="Display Options"
+          description="Adds a selection for element display sizes and allows for content promotion"
           provides=".display_options.IDisplayOptions"
           factory=".display_options.DisplayOptions"
           for="plone.dexterity.interfaces.IDexterityContent"
