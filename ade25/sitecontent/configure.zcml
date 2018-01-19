@@ -22,11 +22,27 @@
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile
         name="default"
-        title="ade25.sitecontent"
+        title="Ade25 Site Content"
         directory="profiles/default"
-        description="Extension profile for ade25.sitecontent."
+        description="Add Ade25 custom site content types and functionality."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="Uninstall Ade25 Site Content"
+        directory="profiles/uninstall"
+        description="Remove support for Ade25 custom site content types and functionality."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <!-- Custom import steps registering portal types with the responsive navigation -->
+    <genericsetup:importStep
+            name="ad25.sitecontent"
+            title="ade25.sitecontent special import handlers"
+            description=""
+            handler="ade25.sitecontent.setuphandlers.setup_various"
+    />
 
     <plone:static
         directory="resources"
