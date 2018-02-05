@@ -15,4 +15,6 @@ class IContentPage(model.Schema, IImageScaleTraversable):
 
 @implementer(IContentPage)
 class ContentPage(Container):
-    pass
+
+    def canSetDefaultPage(self):
+        return False

@@ -34,4 +34,6 @@ class ISectionFolder(model.Schema, IImageScaleTraversable):
 
 @implementer(ISectionFolder)
 class SectionFolder(Container):
-    pass
+
+    def canSetDefaultPage(self):
+        return False

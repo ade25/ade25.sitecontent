@@ -21,7 +21,11 @@ class SectionFolderView(BrowserView):
 
     def has_link_action(self):
         context = aq_inner(self.context)
-        if context.link:
+        try:
+            context_link = context.link
+        except AttributeError:
+            context_link = None
+        if context_link is not None:
             return True
         return False
 
@@ -34,3 +38,13 @@ class SectionFolderView(BrowserView):
     @staticmethod
     def is_authenticated():
         return not api.user.is_anonymous()
+
+    def has_panel_layout(self):
+        context = aq_inner(self.context)
+        try:
+            panel_layout = context.panelPageLayout
+        except AttributeError:
+            panel_layout = None
+        if panel_layout is not None:
+            return True
+        return False
