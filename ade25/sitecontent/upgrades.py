@@ -6,7 +6,7 @@ import logging
 PROFILE_ID = 'profile-ade25.sitecontent:default'
 
 
-def setup_package_widget(site, logger=None):
+def setup_package_widgets(site, logger=None):
     """Method to add widget setup to global widget registry
 
     @param site: Plone site
