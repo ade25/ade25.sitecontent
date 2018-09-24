@@ -22,6 +22,26 @@ def register_content_types(site):
     )
 
 
+def register_widget_types(site):
+    """Add content widgets provided by this package to global widget registry
+
+    @param site: Plone site
+    """
+    widget_types = ['Gallery Slider',
+                    'Gallery Thumbnail Slider',
+                    'Gallery Image Cards']
+    listed_types = api.portal.get_registry_record(
+        name='ade25.widgets.widget_types'
+    )
+    for content_type in widget_types:
+        if content_type not in listed_types:
+            listed_types.append(content_type)
+    api.portal.set_registry_record(
+        name='ade25.widgets.widget_types',
+        value=listed_types
+    )
+
+
 def setup_various(context):
     """
     @param context: Products.GenericSetup.context.DirectoryImportContext instance
@@ -36,3 +56,5 @@ def setup_various(context):
     portal = context.getSite()
 
     register_content_types(portal)
+
+    register_widget_types(portal)

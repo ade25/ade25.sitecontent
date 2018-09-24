@@ -1,0 +1,21 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:i18n="http://namespaces.zope.org/i18n"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="ade25.base">
+
+    <genericsetup:upgradeSteps
+            source="1"
+            destination="1001"
+            profile="ade25.base:default">
+
+        <genericsetup:upgradeStep
+                title="Add widget support"
+                handler="ade25.sitecontent.upgrades.setup_package_widgets"
+                sortkey="1"
+                profile="ade25.base:default"
+        />
+
+    </genericsetup:upgradeSteps>
+
+</configure>
