@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """Module providing base widget"""
+from Acquisition import aq_inner
 from Products.Five import BrowserView
 from zope.component import getUtility
 
-from ade25.base.interfaces import IResponsiveImagesTool
+from ade25.base.interfaces import IResponsiveImageTool
 
 
 class GalleryWidget(BrowserView):
     """ Gallery widget """
 
     def __call__(self,
-                 widget_type='base',
+                 widget_type='gallery',
                  identifier=None,
                  data_set=None,
                  widget_mode='view',
@@ -27,6 +28,7 @@ class GalleryWidget(BrowserView):
         return self.index()
 
     def gallery_items(self):
+        import pdb; pdb.set_trace()
         return
 
     def has_image(self):
@@ -41,5 +43,5 @@ class GalleryWidget(BrowserView):
 
     @staticmethod
     def get_image_data(uuid):
-        tool = getUtility(IResponsiveImagesTool)
+        tool = getUtility(IResponsiveImageTool)
         return tool.create(uuid)

@@ -13,6 +13,8 @@
     <include package=".browser" />
     <include package=".behaviors" />
 
+    <include package=".widgets" />
+
     <!-- Custom db indexing for site contents -->
     <include file="indexers.zcml" />
 
