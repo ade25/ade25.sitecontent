@@ -1,0 +1,45 @@
+<div class="app-widget app-widget--card app-widget__card app-widget__card--base app-widget--${context/UID}"
+         i18n:domain="ade25.sitecontent">
+    <div class="app-widget__header app-widget__header--card">
+        <div class="app-widget__title" i18n:translate="">
+            Content Card
+        </div>
+    </div>
+    <div class="app-widget__content" tal:define="content python:view.widget_content()">
+        <div class="app-card app-card--default app-card--${context/UID}">
+            <div class="app-card__header" tal:condition="python:content['has_image']">
+                <div class="app-card__figure"
+                    tal:define="responsive_image python:content['content_item'].restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', lqip=True, lazy_load=True)">
+                    <a class="app-card__link app-card__link--figure" href="${context/absolute_url}">
+                        <span tal:replace="structure responsive_image" />
+                    </a>
+                </div>
+            </div>
+            <div class="app-card__main">
+                <div class="app-card__section">
+                    <div class="app-card__title">
+                        <a class="app-card__link" tal:attributes="href python:content['url']"
+                            tal:content="python:content['title']">
+                                ${context/Title}
+                        </a>
+                    </div>
+                    <div class="app-card__abstract" tal:condition="python:content['description']">
+                        <a class="app-card__link"
+                            tal:attributes="href python:content['url']"
+                            tal:content="python:content['description']">
+                                ${context/Description}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="app-card__footer">
+                <a class="app-card__link" tal:attributes="href python:content['url']"
+                    i18n:translate="">
+                    Read more
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="app-widget__footer">
+    </div>
+</div>

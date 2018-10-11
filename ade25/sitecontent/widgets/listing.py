@@ -43,8 +43,7 @@ class BaseListingWidget(BrowserView):
         context = aq_inner(self.context)
         items = api.content.find(
             context=context,
-            path={'query': '/'.join(context.getPhysicalPath()),
-                  'depth': 1},
+            depth=1,
             portal_type=[
                 'ade25.sitecontent.contentpage',
                 'ade25.sitecontent.sectionfolder'

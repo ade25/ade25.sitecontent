@@ -42,8 +42,10 @@
             <div class="app-page-cards" tal:condition="view/display_cards">
                 <div class="app-cards app-card-gutter app-cards-page-previews" tal:condition="view/has_contained_pages">
                     <tal:block tal:repeat="content_page view/contained_pages">
-                        <div tal:define="page_uid content_page/UID"
-                                 tal:replace="structure python:view.rendered_card(uuid=page_uid)" />
+                        <div tal:define="page_uid content_page/UID;
+                                         content_card python:context.restrictedTraverse('@@content-widget-context-card')(widget_data=dict(uuid=page_uid))">
+                            <span tal:replace="structure content_card" />
+                        </div>
                     </tal:block>
 
                 </div>

@@ -4,6 +4,16 @@
         xmlns:z3c="http://namespaces.zope.org/z3c"
         i18n_domain="ade25.widgets">
 
+    <!-- Context preview widgets -->
+    <browser:page
+            for="*"
+            name="content-widget-context-card"
+            class=".card.ContextCardWidget"
+            template="card.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
     <!-- Content listings -->
     <browser:page
             for="*"

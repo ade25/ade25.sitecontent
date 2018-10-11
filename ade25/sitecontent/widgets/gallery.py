@@ -28,7 +28,7 @@ class GalleryWidget(BrowserView):
         return self.index()
 
     def gallery_items(self):
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         return
 
     def has_image(self):
