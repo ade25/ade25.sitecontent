@@ -4,7 +4,17 @@
         xmlns:z3c="http://namespaces.zope.org/z3c"
         i18n_domain="ade25.widgets">
 
+    <!-- Content listings -->
+    <browser:page
+            for="*"
+            name="content-widget-listing-base"
+            class=".listing.BaseListingWidget"
+            template="listing-base.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
 
+    <!-- Gallery -->
     <browser:page
         for="*"
         name="content-widget-gallery"

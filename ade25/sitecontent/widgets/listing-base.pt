@@ -1,0 +1,25 @@
+<div class="app-widget app-widget--listing app-widget__listing app-widget__listing--base app-widget--${context/UID}">
+    <div class="app-widget__content" tal:condition="python:view.has_content">
+        <div class="app-widget__main">
+            <h4 class="app-placeholder__heading js-heading">Contents:</h4>
+            <p class="app-placeholder__paragraph js-paragraph"></p>
+            <p class="app-placeholder__paragraph js-paragraph"></p>
+            <p class="app-placeholder__paragraph js-paragraph"></p>
+        </div>
+        <div class="app-widget__footer">
+        </div>
+    </div>
+</div>
+<style>
+    .app-placeholder__heading {
+        width: 100%;
+        height: 2rem;
+        background: #d8d8d8;
+        margin-bottom: 20px;
+    }
+    .app-placeholder__paragraph {
+        width: 90%;
+        height: 20px;
+        background: #d8d8d8;
+    }
+</style>

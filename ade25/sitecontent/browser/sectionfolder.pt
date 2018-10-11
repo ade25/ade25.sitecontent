@@ -36,6 +36,12 @@
           <div class="app-page-text" id="parent-fieldname-text"
                   tal:condition="context/text"
                   tal:content="structure context/text/output" />
+
+      </div>
+      <div class="app-page__main">
+        <div class="app-page__widget--bottom">
+            <div tal:replace="structure python:view.content_widget(widget='listing-base')" />
+        </div>
       </div>
   </metal:content-core>
 </metal:main>

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Module providing base widget"""
+"""Module providing gallery widget"""
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from zope.component import getUtility

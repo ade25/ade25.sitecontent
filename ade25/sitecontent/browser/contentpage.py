@@ -76,9 +76,18 @@ class ContentPageView(BrowserView):
 
     def rendered_gallery(self):
         context = aq_inner(self.context)
-        template = context.restrictedTraverse('@@content-widget-view')(
-            widget_type='gallery',
-            identifier='gallery'
+        template = context.restrictedTraverse('@@gallery-view')()
+        return template
+
+    def content_widget(self, widget='base'):
+        context = aq_inner(self.context)
+        requested_widget = widget
+        widget_view_name = '@@content-widget-{0}'.format(
+            requested_widget
+        )
+        template = context.restrictedTraverse(widget_view_name)(
+            widget_type=requested_widget,
+            identifier=requested_widget
         )
         return template
 
