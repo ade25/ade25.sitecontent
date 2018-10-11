@@ -52,3 +52,48 @@ class BaseListingWidget(BrowserView):
             sort_on='getObjPositionInParent'
         )
         return items
+
+
+class CardListingWidget(BrowserView):
+    """ Basic context content listing """
+
+    def __call__(self,
+                 widget_data=None,
+                 widget_mode='view',
+                 **kw):
+        self.params = {
+            'widget_mode': widget_mode,
+            'widget_data': widget_data
+        }
+        self.has_content = len(self.contained_content_items()) > 0
+        return self.render()
+
+    def render(self):
+        return self.index()
+
+    def content_items(self):
+        results = []
+        brains = self.contained_content_items()
+        for brain in brains:
+            results.append({
+                'title': brain.Title,
+                'description': brain.Description,
+                'url': brain.getURL(),
+                'timestamp': brain.Date,
+                'uuid': brain.UID
+            })
+        return results
+
+    def contained_content_items(self):
+        context = aq_inner(self.context)
+        items = api.content.find(
+            context=context,
+            depth=1,
+            portal_type=[
+                'ade25.sitecontent.contentpage',
+                'ade25.sitecontent.sectionfolder'
+            ],
+            review_state='published',
+            sort_on='getObjPositionInParent'
+        )
+        return items

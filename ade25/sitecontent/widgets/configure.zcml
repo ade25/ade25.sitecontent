@@ -24,6 +24,16 @@
             layer="..interfaces.IAde25SitecontentLayer"
     />
 
+    <browser:page
+            for="*"
+            name="content-widget-listing-cards"
+            class=".listing.CardListingWidget"
+            template="listing-cards.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+
     <!-- Gallery -->
     <browser:page
         for="*"

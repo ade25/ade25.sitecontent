@@ -39,6 +39,12 @@
                      tal:condition="context/text"
                      tal:content="structure context/text/output" />
 
+            <div class="app-page__section" tal:condition="view/display_cards">
+                <div class="c-page-listing" tal:condition="view/has_contained_pages">
+                    <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None))"></tal:widget>
+                </div>
+            </div>
+
             <div class="app-page-cards" tal:condition="view/display_cards">
                 <div class="app-cards app-card-gutter app-cards-page-previews" tal:condition="view/has_contained_pages">
                     <tal:block tal:repeat="content_page view/contained_pages">
