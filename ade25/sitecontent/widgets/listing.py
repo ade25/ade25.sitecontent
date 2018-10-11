@@ -40,10 +40,15 @@ class BaseListingWidget(BrowserView):
         return results
 
     def contained_content_items(self):
+        context = aq_inner(self.context)
         items = api.content.find(
-            context=aq_inner(self.context),
-            depth=1,
-            portal_type=['ContentPage', 'SectionFolder'],
+            context=context,
+            path={'query': '/'.join(context.getPhysicalPath()),
+                  'depth': 1},
+            portal_type=[
+                'ade25.sitecontent.contentpage',
+                'ade25.sitecontent.sectionfolder'
+            ],
             review_state='published',
             sort_on='getObjPositionInParent'
         )
