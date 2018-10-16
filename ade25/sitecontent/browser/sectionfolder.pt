@@ -38,9 +38,10 @@
                   tal:content="structure context/text/output" />
 
       </div>
+
       <div class="app-page__main">
         <div class="app-page__widget--bottom">
-            <div tal:replace="structure python:view.content_widget(widget='listing-base')" />
+            <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None))"></tal:widget>
         </div>
       </div>
   </metal:content-core>
