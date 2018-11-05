@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Module providing base widget"""
+"""Module providing gallery widget"""
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from zope.component import getUtility
@@ -28,7 +28,7 @@ class GalleryWidget(BrowserView):
         return self.index()
 
     def gallery_items(self):
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         return
 
     def has_image(self):

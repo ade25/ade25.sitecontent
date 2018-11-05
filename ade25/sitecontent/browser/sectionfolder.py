@@ -48,3 +48,18 @@ class SectionFolderView(BrowserView):
         if panel_layout is not None:
             return True
         return False
+
+    def content_widget(self, widget='base'):
+        """ Backwards compatible widget integration that allows for
+            direct template level integration of widgets
+         """
+        context = aq_inner(self.context)
+        requested_widget = widget
+        widget_view_name = '@@content-widget-{0}'.format(
+            requested_widget
+        )
+        template = context.restrictedTraverse(widget_view_name)(
+            widget_type=requested_widget,
+            identifier=requested_widget
+        )
+        return template

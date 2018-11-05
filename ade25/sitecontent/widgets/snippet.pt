@@ -1,0 +1,29 @@
+<div class="app-snippet app-snippet--default app-snippet--${context/UID}">
+    <div class="app-snippet__main">
+        <div class="app-snippet__section">
+            <div class="app-snippet__title">
+                <a class="app-snippet__link" href="${context/absolute_url}">
+                        ${context/Title}
+                </a>
+            </div>
+            <div class="app-snippet__abstract" tal:condition="context/Description">
+                <a class="app-snippet__link" href="${context/absolute_url}">
+                        ${context/Description}
+                </a>
+            </div>
+        </div>
+        <div class="app-snippet__footer">
+            <a class="app-snippet__link" href="${context/absolute_url}">
+                mehr&hellip;
+            </a>
+        </div>
+    </div>
+    <div class="app-snippet__aside" tal:condition="python:view.has_image()">
+        <div class="app-snippet__figure"
+                 tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', lqip=True, lazy_load=True)">
+            <a class="app-snippet__link app-snippet__link--figure" href="${context/absolute_url}">
+                <span tal:replace="structure responsive_image" />
+            </a>
+        </div>
+    </div>
+</div>

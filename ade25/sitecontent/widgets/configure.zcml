@@ -4,7 +4,37 @@
         xmlns:z3c="http://namespaces.zope.org/z3c"
         i18n_domain="ade25.widgets">
 
+    <!-- Context preview widgets -->
+    <browser:page
+            for="*"
+            name="content-widget-context-card"
+            class=".card.ContextCardWidget"
+            template="card.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
 
+    <!-- Content listings -->
+    <browser:page
+            for="*"
+            name="content-widget-listing-base"
+            class=".listing.BaseListingWidget"
+            template="listing-base.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="content-widget-listing-cards"
+            class=".listing.CardListingWidget"
+            template="listing-cards.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+
+    <!-- Gallery -->
     <browser:page
         for="*"
         name="content-widget-gallery"
