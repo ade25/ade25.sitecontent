@@ -14,6 +14,16 @@
             layer="..interfaces.IAde25SitecontentLayer"
     />
 
+    <!-- Context filters -->
+    <browser:page
+            for="*"
+            name="content-widget-filter-keywords"
+            class=".filter.KeywordFilterWidget"
+            template="filter-keywords.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
     <!-- Content listings -->
     <browser:page
             for="*"

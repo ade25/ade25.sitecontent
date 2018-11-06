@@ -1,0 +1,36 @@
+<div class="app-widget app-widget--filter app-widget__filter app-widget__filter--kexwords app-widget--${context/UID}"
+         i18n:domain="ade25.sitecontent" tal:condition="python:view.has_content">
+    <div class="app-widget__header app-widget__header--listing">
+        <div class="app-widget__title" i18n:translate="">
+            Keyword Filter
+        </div>
+    </div>
+    <div class="app-widget__content">
+        <div tal:content="view/normalized_keywords"></div>
+        <div tal:content="view/keyword_list"></div>
+        <div class="app-widget__main" tal:define="items python:view.available_keywords">
+            <ul class="o-list">
+                <li class="o-list__item">
+                    <a class="o-list__link js-filter__link"
+                       data-filter=".js-filter--reset"
+                             tal:attributes="href python:context.absolute_url()"
+                        i18n:translate="">
+                        All
+                    </a>
+                </li>
+                <tal:items tal:repeat="item items">
+                    <li class="o-list__item" tal:define="token python:view.normalized_token(item.token)">
+                        <a class="o-list__link js-filter__link"
+                            tal:attributes="href python:context.absolute_url() + '?subject=' + item.value;
+                                            data-filter python:'.' + token"
+                            tal:content="python:item.title">
+                            Item Title
+                        </a>
+                    </li>
+                </tal:items>
+            </ul>
+        </div>
+        <div class="app-widget__footer">
+        </div>
+    </div>
+</div>

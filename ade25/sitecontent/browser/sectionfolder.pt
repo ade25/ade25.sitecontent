@@ -41,6 +41,7 @@
 
       <div class="app-page__main">
         <div class="app-page__widget--bottom">
+            <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-filter-keywords')(widget_data=dict(limit=None))"></tal:widget>
             <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None))"></tal:widget>
         </div>
       </div>
