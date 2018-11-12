@@ -3,7 +3,7 @@
 from Products.Five import BrowserView
 from zope.component import getUtility
 
-from ade25.base.interfaces import IResponsiveImagesTool
+from ade25.base.interfaces import IResponsiveImageTool
 
 
 class GalleryWidget(BrowserView):
