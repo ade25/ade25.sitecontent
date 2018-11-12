@@ -6,7 +6,8 @@
         </div>
     </div>
     <div class="app-widget__content" tal:define="content python:view.widget_content()">
-        <div class="app-card app-card--default app-card--${context/UID}">
+        <div class="app-card app-card--default app-card--${context/UID}"
+            tal:attributes="class python:'app-card app-card--default ' + content['css_classes']">
             <div class="app-card__header" tal:condition="python:content['has_image']">
                 <div class="app-card__figure"
                     tal:define="responsive_image python:content['content_item'].restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', lqip=True, lazy_load=True)">

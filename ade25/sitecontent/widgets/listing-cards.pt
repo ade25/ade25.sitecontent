@@ -9,7 +9,8 @@
         <div class="app-widget__main" tal:define="items python:view.content_items">
             <div class="o-card-list o-card-list--${context/UID} js-widget--gallery">
                 <tal:items tal:repeat="item items">
-                    <div class="o-card-list__item" tal:define="item_uuid python:item['uuid'];">
+                    <div class="o-card-list__item" tal:define="item_uuid python:item['uuid'];"
+                        tal:attributes="class python:'o-card-list__item ' + item['css_classes']">
                         <div tal:replace="structure python:context.restrictedTraverse('@@content-widget-context-card')(widget_data=dict(uuid=item_uuid))">
                             Content Preview Card
                         </div>

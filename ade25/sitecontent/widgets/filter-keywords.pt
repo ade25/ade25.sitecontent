@@ -1,4 +1,4 @@
-<div class="app-widget app-widget--filter app-widget__filter app-widget__filter--kexwords app-widget--${context/UID}"
+<div class="app-widget app-widget--filter app-widget__filter app-widget__filter--keywords app-widget--${context/UID}"
          i18n:domain="ade25.sitecontent" tal:condition="python:view.has_content">
     <div class="app-widget__header app-widget__header--listing">
         <div class="app-widget__title" i18n:translate="">
@@ -6,8 +6,6 @@
         </div>
     </div>
     <div class="app-widget__content">
-        <div tal:content="view/normalized_keywords"></div>
-        <div tal:content="view/keyword_list"></div>
         <div class="app-widget__main" tal:define="items python:view.available_keywords">
             <ul class="o-list">
                 <li class="o-list__item">
@@ -22,7 +20,7 @@
                     <li class="o-list__item" tal:define="token python:view.normalized_token(item.token)">
                         <a class="o-list__link js-filter__link"
                             tal:attributes="href python:context.absolute_url() + '?subject=' + item.value;
-                                            data-filter python:'.' + token"
+                                            data-filter python:'.' + view.filter_value(item.value)"
                             tal:content="python:item.title">
                             Item Title
                         </a>

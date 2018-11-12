@@ -3,6 +3,9 @@
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from plone import api
+from plone.app.vocabularies.catalog import KeywordsVocabulary
+from plone.i18n.normalizer import IIDNormalizer
+from zope.component import queryUtility
 
 
 class BaseListingWidget(BrowserView):
@@ -71,6 +74,50 @@ class CardListingWidget(BrowserView):
     def render(self):
         return self.index()
 
+    @staticmethod
+    def normalizer():
+        return queryUtility(IIDNormalizer)
+
+    def card_subject_classes(self, item):
+        subjects = item.Subject
+        class_list = [
+            self.filter_value(keyword)
+            for keyword in subjects
+        ]
+        return class_list
+
+    def card_css_classes(self, item):
+        class_list = self.card_subject_classes(item)
+        if class_list:
+            return " ".join(class_list)
+        else:
+            return "app-tag--all"
+
+    def available_keywords(self):
+        context = aq_inner(self.context)
+        keyword_vocabulary = KeywordsVocabulary()
+        vocabulary = keyword_vocabulary(context)
+        return vocabulary
+
+    def normalized_token(self, term):
+        return self.normalizer().normalize(term, locale="de")
+
+    def normalized_keywords(self):
+        vocabulary = self.available_keywords()
+        taxonomy = dict()
+        for index, term in enumerate(vocabulary):
+            element_value = term.value
+            taxonomy[index] = element_value
+        return taxonomy
+
+    def filter_value(self, term):
+        vocabulary = self.normalized_keywords()
+        filter_value = "app-tag--undefined"
+        for item_index, item_term in vocabulary.items():
+            if item_term == term:
+                filter_value = "app-tag--{0}".format(str(item_index))
+        return filter_value
+
     def content_items(self):
         results = []
         brains = self.contained_content_items()
@@ -80,7 +127,11 @@ class CardListingWidget(BrowserView):
                 'description': brain.Description,
                 'url': brain.getURL(),
                 'timestamp': brain.Date,
-                'uuid': brain.UID
+                'uuid': brain.UID,
+                "css_classes": "o-card-list__item--{0} {1}".format(
+                    brain.UID,
+                    self.card_css_classes(brain)
+                ),
             })
         return results
 
