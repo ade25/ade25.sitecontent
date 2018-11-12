@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Module providing section folder content type"""
 from plone.app.z3cform.widget import LinkFieldWidget
+from plone.autoform import directives
 from plone.dexterity.content import Container
-from plone.directives import form
 from plone.supermodel import model
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implementer
@@ -22,7 +22,7 @@ class ISectionFolder(model.Schema, IImageScaleTraversable):
         fields=['link', ]
     )
 
-    form.widget(link=LinkFieldWidget)
+    directives.widget(link=LinkFieldWidget)
     link = schema.TextLine(
         title=_(u"Link"),
         description=_(u"Optional internal or external link that will be "
