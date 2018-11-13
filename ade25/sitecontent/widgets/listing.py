@@ -148,3 +148,34 @@ class CardListingWidget(BrowserView):
             sort_on='getObjPositionInParent'
         )
         return items
+
+
+class FilterableCardListingWidget(BrowserView):
+    """ Basic context content listing """
+
+    def __call__(self,
+                 widget_data=None,
+                 widget_mode='view',
+                 **kw):
+        self.params = {
+            'widget_mode': widget_mode,
+            'widget_data': widget_data
+        }
+        self.has_content = len(self.contained_content_items()) > 0
+        return self.render()
+
+    def render(self):
+        return self.index()
+
+    def contained_content_items(self):
+        context = aq_inner(self.context)
+        items = api.content.find(
+            context=context,
+            depth=1,
+            portal_type=[
+                'ade25.sitecontent.contentpage',
+                'ade25.sitecontent.sectionfolder'
+            ],
+            review_state='published',
+        )
+        return items

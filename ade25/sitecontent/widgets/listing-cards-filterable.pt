@@ -1,0 +1,22 @@
+<div class="app-widget app-widget--listing app-widget__listing app-widget__listing--cards app-widget--${context/UID}"
+         i18n:domain="ade25.sitecontent" tal:condition="python:view.has_content">
+    <div class="app-widget__header app-widget__header--listing-cards">
+        <div class="app-widget__title" i18n:translate="">
+            Filterable Content Cards
+        </div>
+    </div>
+    <div class="app-widget__content">
+        <div class="app-widget__main">
+            <div class="o-grid o-grid--gutter">
+                <div class="o-grid__item o-grid__item--width-66">
+                    <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None))"></tal:widget>
+                </div>
+                <div class="o-grid__item o-grid__item--width-33">
+                    <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-filter-keywords')(widget_data=dict(limit=None))"></tal:widget>
+                </div>
+            </div>
+        </div>
+        <div class="app-widget__footer">
+        </div>
+    </div>
+</div>
