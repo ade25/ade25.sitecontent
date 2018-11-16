@@ -19,6 +19,9 @@
                   ${context/Description}
           </p>
       </div>
+      <pre tal:content="context/contentPanelsHeader"></pre>
+      <pre tal:content="context/contentPanelsMain"></pre>
+      <pre tal:content="context/contentPanelsFooter"></pre>
       <div class="app-page-body">
           <tal:redirect tal:condition="view/has_link_action">
               <div class="app-alert app-alert--default" tal:condition="python:view.is_authenticated">
@@ -40,7 +43,7 @@
       </div>
 
       <div class="app-page__main">
-        <div class="app-page__widget--bottom">
+        <div class="app-page__widget--bottom" tal:content="nothing">
             <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards-filterable')(widget_data=dict(limit=None))"></tal:widget>
         </div>
       </div>
