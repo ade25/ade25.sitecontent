@@ -10,6 +10,10 @@
 <metal:main fill-slot="main">
     <metal:content-core define-macro="main">
 
+        <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+            <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
+        </section>
+
         <div class="app-page-header app-page__header">
             <div class="app-page__title">
                 <h1 class="app-page__headline">
@@ -20,6 +24,7 @@
                     ${context/Description}
             </p>
         </div>
+
         <div class="app-page-body">
 
             <tal:gallery tal:condition="view/display_gallery">
@@ -39,23 +44,18 @@
                      tal:condition="context/text"
                      tal:content="structure context/text/output" />
 
-            <div class="app-page__section" tal:condition="view/display_cards">
-                <div class="c-page-listing" tal:condition="view/has_contained_pages">
-                    <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None))"></tal:widget>
-                </div>
+            <div class="o-page__main">
+                <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+                    <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')"></tal:content-panels>
+                </section>
             </div>
 
-            <div class="app-page-cards" tal:condition="view/display_cards">
-                <div class="app-cards app-card-gutter app-cards-page-previews" tal:condition="view/has_contained_pages">
-                    <tal:block tal:repeat="content_page view/contained_pages">
-                        <div tal:define="page_uid content_page/UID;
-                                         content_card python:context.restrictedTraverse('@@content-widget-context-card')(widget_data=dict(uuid=page_uid))">
-                            <span tal:replace="structure content_card" />
-                        </div>
-                    </tal:block>
-
-                </div>
+            <div class="o-page__footer">
+                <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+                    <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='footer', mode='view')"></tal:content-panels>
+                </section>
             </div>
+
 
         </div>
 

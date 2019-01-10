@@ -19,6 +19,17 @@ class SectionFolderView(BrowserView):
     def render(self):
         return self.index()
 
+    def panel_page_support_enabled(self):
+        context = aq_inner(self.context)
+        try:
+            from ade25.panelpage.behaviors.storage import IContentPanelStorage
+            if IContentPanelStorage.providedBy(context):
+                return True
+            else:
+                return False
+        except ImportError:
+            return False
+
     def has_link_action(self):
         context = aq_inner(self.context)
         try:

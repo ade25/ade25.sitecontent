@@ -9,6 +9,11 @@
 
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
+
+      <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+          <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
+      </section>
+
       <div class="app-page-header">
           <div class="app-page-title">
               <h1 class="app-page-headline" tal:content="context/Title">
@@ -19,9 +24,7 @@
                   ${context/Description}
           </p>
       </div>
-      <pre tal:content="context/contentPanelsHeader"></pre>
-      <pre tal:content="context/contentPanelsMain"></pre>
-      <pre tal:content="context/contentPanelsFooter"></pre>
+
       <div class="app-page-body">
           <tal:redirect tal:condition="view/has_link_action">
               <div class="app-alert app-alert--default" tal:condition="python:view.is_authenticated">
@@ -42,11 +45,19 @@
 
       </div>
 
-      <div class="app-page__main">
-        <div class="app-page__widget--bottom" tal:content="nothing">
-            <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards-filterable')(widget_data=dict(limit=None))"></tal:widget>
-        </div>
+      <div class="o-page__main">
+          <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+              <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')"></tal:content-panels>
+          </section>
       </div>
+
+      <div class="o-page__footer">
+          <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+              <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='footer', mode='view')"></tal:content-panels>
+          </section>
+      </div>
+
+
   </metal:content-core>
 </metal:main>
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module providing content listing widgets"""
+import uuid as uuid_tool
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from plone import api
@@ -77,6 +78,23 @@ class CardListingWidget(BrowserView):
     @staticmethod
     def normalizer():
         return queryUtility(IIDNormalizer)
+
+    @property
+    def edit_mode(self):
+        if self.params['widget_mode'] == 'edit':
+            return True
+        return False
+
+    @property
+    def record(self):
+        return self.params['widget_data']
+
+    def widget_uid(self):
+        try:
+            widget_id = self.record['id']
+        except (KeyError, TypeError):
+            widget_id = str(uuid_tool.uuid4())
+        return widget_id
 
     def card_subject_classes(self, item):
         subjects = item.Subject
