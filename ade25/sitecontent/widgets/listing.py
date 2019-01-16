@@ -90,7 +90,7 @@ class CardListingWidget(BrowserView):
         return self.params['widget_data']
 
     def custom_styles(self):
-        if 'styles' in self.record:
+        if self.record and 'styles' in self.record:
             return self.record['styles']
         else:
             return None
