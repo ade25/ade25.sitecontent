@@ -4,7 +4,7 @@ from Acquisition import aq_inner
 from Products.Five import BrowserView
 from plone import api
 from plone.app.vocabularies.catalog import KeywordsVocabulary
-from plone.i18n.normalizer import IIDNormalizer
+from plone.i18n.normalizer import IIDNormalizer, IURLNormalizer
 from zope.component import queryUtility
 
 
@@ -31,7 +31,7 @@ class KeywordFilterWidget(BrowserView):
 
     @staticmethod
     def normalizer():
-        return queryUtility(IIDNormalizer)
+        return queryUtility(IURLNormalizer)
 
     def available_keywords(self):
         context = aq_inner(self.context)
@@ -40,16 +40,23 @@ class KeywordFilterWidget(BrowserView):
         return vocabulary
 
     def normalized_token(self, term):
-        return self.normalizer().normalize(term)
+        return self.normalizer().normalize(term, locale="de")
 
     def normalized_keywords(self):
         vocabulary = self.available_keywords()
         taxonomy = dict()
-        for term in vocabulary:
+        for index, term in enumerate(vocabulary):
             element_value = term.value
-            element_token = self.normalizer().normalize(element_value)
-            taxonomy[element_token] = element_value
+            taxonomy[index] = element_value
         return taxonomy
+
+    def filter_value(self, term):
+        vocabulary = self.normalized_keywords()
+        filter_value = "app-tag--undefined"
+        for item_index, item_term in vocabulary.items():
+            if item_term == term:
+                filter_value = "app-tag--{0}".format(str(item_index))
+        return filter_value
 
     def keyword_list(self):
         vocabulary = self.available_keywords()

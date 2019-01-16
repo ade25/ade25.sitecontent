@@ -3,6 +3,7 @@
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
+from plone.supermodel import directives as form
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import provider
@@ -28,7 +29,7 @@ available_card_sizes = SimpleVocabulary(
 class IDisplayOptions(model.Schema):
     """Behavior providing selectable grid sizes"""
 
-    model.fieldset(
+    form.fieldset(
         'display',
         label=u"Display",
         fields=['elementSize', 'featured', 'promoted']
