@@ -9,7 +9,7 @@
         <div class="app-widget__main">
             <div class="o-grid o-grid--gutter">
                 <div class="o-grid__item o-grid__item--width-66">
-                    <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None))"></tal:widget>
+                    <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')(widget_data=dict(limit=None, styles={'class_container':'gallery isotope', 'class_items':'width-50'}))"></tal:widget>
                 </div>
                 <div class="o-grid__item o-grid__item--width-33">
                     <tal:widget tal:replace="structure python:context.restrictedTraverse('@@content-widget-filter-keywords')(widget_data=dict(limit=None))"></tal:widget>

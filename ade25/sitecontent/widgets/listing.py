@@ -89,6 +89,24 @@ class CardListingWidget(BrowserView):
     def record(self):
         return self.params['widget_data']
 
+    def custom_styles(self):
+        if 'styles' in self.record:
+            return self.record['styles']
+        else:
+            return None
+
+    def card_list_class(self):
+        context = aq_inner(self.context)
+        css_class = 'c-card-list c-card-list--{}'.format(context.UID())
+        if self.custom_styles():
+            class_container = self.custom_styles()['class_container']
+            for class_name in class_container.split(' '):
+                css_class = '{0} c-card-list--{1}'.format(
+                    css_class,
+                    class_name
+                )
+        return css_class
+
     def widget_uid(self):
         try:
             widget_id = self.record['id']
