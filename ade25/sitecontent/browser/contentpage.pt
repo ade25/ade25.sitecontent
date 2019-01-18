@@ -37,20 +37,20 @@
             </section>
 
             <div class="o-page__title">
-                <h1 class="o-page__headline" tal:condition="python:context.Title"
-                         tal:content="python:context.Title">
+                <h1 class="o-page__headline" tal:condition="python:context.Title()"
+                         tal:content="python:context.Title()">
                     Page Title
                 </h1>
             </div>
-            <div class="o-page__subtitle" tal:condition="python:context.Description">
-                <p class="o-page__abstract" tal:content="python:context.Description">
+            <div class="o-page__subtitle" tal:condition="python:context.Description()">
+                <p class="o-page__abstract" tal:content="python:context.Description()">
                     Page Abstract
                 </p>
             </div>
 
         </div>
 
-        <div class="o-page__main">
+        <div class="o-page__main o-page__main--panels">
             <section class="o-page__section" tal:condition="not:python:view.panel_page_support_enabled()">
                 <tal:gallery tal:condition="view/display_gallery">
                     <div tal:replace="structure view/rendered_gallery" />
@@ -66,14 +66,18 @@
                 </tal:nogallery>
             </section>
 
-            <section class="o-page__section">
+            <section class="o-page__section o-page__section--main-content">
                 <div class="o-page__body-text" id="parent-fieldname-text"
                          tal:condition="context/text"
                          tal:content="structure context/text/output" />
             </section>
 
-            <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
-                <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')"></tal:content-panels>
+            <section class="o-page__section o-page__section--main-panels"
+                     tal:condition="python:view.panel_page_support_enabled()">
+                <tal:content-panels
+                     tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')">
+                    Main Panels
+                </tal:content-panels>
             </section>
 
         </div>
