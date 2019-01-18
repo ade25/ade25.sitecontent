@@ -1,0 +1,3 @@
+<div class="c-gallery c-gallery--slider" tal:condition="python:view.has_content()">
+    <tal:gallery tal:content="structure python:context.restrictedTraverse('@@gallery-view')()" ></tal:gallery>
+</div>

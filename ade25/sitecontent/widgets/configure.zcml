@@ -63,4 +63,13 @@
         layer="..interfaces.IAde25SitecontentLayer"
         />
 
+    <browser:page
+            for="*"
+            name="content-widget-gallery-slider"
+            class=".gallery.GalleryWidgetSlider"
+            template="gallery-slider.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
 </configure>
