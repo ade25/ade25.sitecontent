@@ -10,53 +10,78 @@
 <metal:main fill-slot="main">
     <metal:content-core define-macro="main">
 
-        <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
-            <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
-        </section>
+        <div class="o-page__header">
 
-        <div class="app-page-header app-page__header">
-            <div class="app-page__title">
-                <h1 class="app-page__headline">
-                        ${context/Title}
-                </h1>
-            </div>
-            <p class="app-page__abstract" tal:condition="context/Description">
-                    ${context/Description}
-            </p>
-        </div>
-
-        <div class="app-page-body">
-
-            <tal:gallery tal:condition="view/display_gallery">
-                <div tal:replace="structure view/rendered_gallery" />
-            </tal:gallery>
-
-            <tal:nogallery tal:condition="not:view/display_gallery">
-                <div class="app-page-leadimage" tal:condition="view/has_leadimage">
-                    <div class="app-page__asset"
-                             tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field_name='image_caption', scale='default', lqip=True, lazy_load=True)">
-                        <span tal:replace="structure responsive_image" />
+            <div class="c-panel-editor__header" tal:condition="python:view.panel_page_support_enabled()">
+                <div class="c-toolbar c-toolbar--primary">
+                    <div class="c-toolbar__content">
+                        <div class="c-toolbar__item">
+                            <div class="c-toolbar__title" i18n:translate="">
+                                Panel Page
+                            </div>
+                        </div>
+                        <div class="c-toolbar__item">
+                            <div class="c-toolbar__actions">
+                                <a class="c-toolbar__action c-button c-button--default" href="/@@panels-cancel"
+                                         tal:attributes="href python:context.absolute_url() + '/@@panel-page-view'" i18n:translate="">
+                                    Edit
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </tal:nogallery>
-
-            <div class="app-page-text" id="parent-fieldname-text"
-                     tal:condition="context/text"
-                     tal:content="structure context/text/output" />
-
-            <div class="o-page__main">
-                <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
-                    <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')"></tal:content-panels>
-                </section>
             </div>
 
-            <div class="o-page__footer">
-                <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
-                    <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='footer', mode='view')"></tal:content-panels>
-                </section>
+            <section class="o-page__section o-page__section--header-panels" tal:condition="python:view.panel_page_support_enabled()">
+                <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
+            </section>
+
+            <div class="o-page__title">
+                <h1 class="o-page__headline" tal:condition="python:context.Title"
+                         tal:content="python:context.Title">
+                    Page Title
+                </h1>
+            </div>
+            <div class="o-page__subtitle" tal:condition="python:context.Description">
+                <p class="o-page__abstract" tal:content="python:context.Description">
+                    Page Abstract
+                </p>
             </div>
 
+        </div>
 
+        <div class="o-page__main">
+            <section class="o-page__section" tal:condition="not:python:view.panel_page_support_enabled()">
+                <tal:gallery tal:condition="view/display_gallery">
+                    <div tal:replace="structure view/rendered_gallery" />
+                </tal:gallery>
+
+                <tal:nogallery tal:condition="not:view/display_gallery">
+                    <div class="app-page-leadimage" tal:condition="view/has_leadimage">
+                        <div class="app-page__asset"
+                                 tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field_name='image_caption', scale='default', lqip=True, lazy_load=True)">
+                            <span tal:replace="structure responsive_image" />
+                        </div>
+                    </div>
+                </tal:nogallery>
+            </section>
+
+            <section class="o-page__section">
+                <div class="o-page__body-text" id="parent-fieldname-text"
+                         tal:condition="context/text"
+                         tal:content="structure context/text/output" />
+            </section>
+
+            <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+                <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')"></tal:content-panels>
+            </section>
+
+        </div>
+
+        <div class="o-page__footer">
+            <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+                <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='footer', mode='view')"></tal:content-panels>
+            </section>
         </div>
 
     </metal:content-core>
