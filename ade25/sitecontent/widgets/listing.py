@@ -98,12 +98,18 @@ class CardListingWidget(BrowserView):
     def card_list_class(self):
         context = aq_inner(self.context)
         css_class = 'c-card-list c-card-list--{}'.format(context.UID())
-        if self.custom_styles():
-            class_container = self.custom_styles()['class_container']
+        custom_styles = self.custom_styles()
+        if custom_styles:
+            class_container = custom_styles['class_container']
             for class_name in class_container.split(' '):
                 css_class = '{0} c-card-list--{1}'.format(
                     css_class,
                     class_name
+                )
+            if 'custom' in custom_styles:
+                css_class = '{0} {1}'.format(
+                    css_class,
+                    custom_styles['custom']
                 )
         return css_class
 
