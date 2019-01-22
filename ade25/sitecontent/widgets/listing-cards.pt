@@ -1,23 +1,11 @@
-<div class="c-widget c-widget--text-block c-widget__text-block c-widget--${view/widget_uid}"
-         tal:define="settings python:view.params;">
-    <div class="c-widget__header c-widget__header--listing-cards">
-        <div class="c-widget__title">
-            Widget: Text Block
-        </div>
-    </div>
-    <div class="c-widget__main" tal:condition="python:view.has_content">
-            <div class="c-card-list c-card-list--${context/UID} js-widget--gallery" tal:define="items python:view.content_items"
-                tal:attributes="class python:view.card_list_class()">
-                <tal:items tal:repeat="item items">
-                    <div class="c-card-list__item c-card-list__item--width-33" tal:define="item_uuid python:item['uuid'];"
-                        tal:attributes="class python:'c-card-list__item c-card-list__item--width-33 ' + item['css_classes']">
-                        <div tal:replace="structure python:context.restrictedTraverse('@@content-widget-context-card')(widget_data=dict(uuid=item_uuid))">
-                            Content Preview Card
-                        </div>
-                    </div>
-                </tal:items>
+<div class="c-card-list c-card-list--${context/UID} js-widget--gallery" tal:define="items python:view.content_items"
+         tal:attributes="class python:view.card_list_class()">
+    <tal:items tal:repeat="item items">
+        <div class="c-card-list__item c-card-list__item--width-33" tal:define="item_uuid python:item['uuid'];"
+                 tal:attributes="class python:'c-card-list__item c-card-list__item--width-33 ' + item['css_classes']">
+            <div tal:replace="structure python:context.restrictedTraverse('@@content-widget-context-card')(widget_data=dict(uuid=item_uuid))">
+                Content Preview Card
             </div>
-    </div>
-    <div class="c-widget__footer">
-    </div>
+        </div>
+    </tal:items>
 </div>
