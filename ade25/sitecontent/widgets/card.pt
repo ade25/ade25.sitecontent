@@ -10,7 +10,7 @@
             tal:attributes="class python:'c-card c-card--default ' + content['css_classes']">
             <div class="c-card__header" tal:condition="python:content['has_image']">
                 <div class="c-card__figure"
-                    tal:define="responsive_image python:content['content_item'].restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', lqip=True, lazy_load=True)">
+                    tal:define="responsive_image python:content['content_item'].restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', aspect_ratio='4/3', lqip=True, lazy_load=True)">
                     <a class="c-card__link c-card__link--figure" tal:attributes="href python:content['url']">
                         <span tal:replace="structure responsive_image" />
                     </a>
