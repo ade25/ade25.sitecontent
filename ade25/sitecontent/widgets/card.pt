@@ -1,46 +1,35 @@
-<div class="c-widget c-widget--card c-widget__card c-widget__card--base c-widget--${context/UID}"
-         i18n:domain="ade25.sitecontent">
-    <div class="c-widget__header c-widget__header--card">
-        <div class="c-widget__title" i18n:translate="">
-            Content Card
+<div class="c-card c-card--default"
+        tal:define="content python:view.widget_content()"
+         tal:attributes="class python:'c-card c-card--default ' + content['css_classes']">
+    <div class="c-card__header" tal:condition="python:content['has_image']">
+        <div class="c-card__figure"
+                 tal:define="responsive_image python:content['content_item'].restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', aspect_ratio='4/3', lqip=True, lazy_load=True)">
+            <a class="c-card__link c-card__link--figure" tal:attributes="href python:content['url']">
+                <span tal:replace="structure responsive_image" />
+            </a>
         </div>
     </div>
-    <div class="c-widget__content" tal:define="content python:view.widget_content()">
-        <div class="c-card c-card--default c-card--${context/UID}"
-            tal:attributes="class python:'c-card c-card--default ' + content['css_classes']">
-            <div class="c-card__header" tal:condition="python:content['has_image']">
-                <div class="c-card__figure"
-                    tal:define="responsive_image python:content['content_item'].restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', aspect_ratio='4/3', lqip=True, lazy_load=True)">
-                    <a class="c-card__link c-card__link--figure" tal:attributes="href python:content['url']">
-                        <span tal:replace="structure responsive_image" />
-                    </a>
-                </div>
-            </div>
-            <div class="c-card__main">
-                <div class="c-card__section">
-                    <div class="c-card__title">
-                        <a class="c-card__link" tal:attributes="href python:content['url']"
-                            tal:content="python:content['title']">
-                                ${context/Title}
-                        </a>
-                    </div>
-                    <div class="c-card__abstract" tal:condition="python:content['description']">
-                        <a class="c-card__link"
-                            tal:attributes="href python:content['url']"
-                            tal:content="python:content['description']">
-                                ${context/Description}
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="c-card__footer">
+    <div class="c-card__main">
+        <div class="c-card__section">
+            <div class="c-card__title">
                 <a class="c-card__link" tal:attributes="href python:content['url']"
-                    i18n:translate="">
-                    Read more
+                         tal:content="python:content['title']">
+                        ${context/Title}
+                </a>
+            </div>
+            <div class="c-card__abstract" tal:condition="python:content['description']">
+                <a class="c-card__link"
+                         tal:attributes="href python:content['url']"
+                         tal:content="python:content['description']">
+                        ${context/Description}
                 </a>
             </div>
         </div>
     </div>
-    <div class="c-widget__footer">
+    <div class="c-card__footer">
+        <a class="c-card__link" tal:attributes="href python:content['url']"
+                 i18n:translate="">
+            Read more
+        </a>
     </div>
 </div>

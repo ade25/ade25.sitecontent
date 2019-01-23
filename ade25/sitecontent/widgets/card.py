@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module providing preview cards"""
+import uuid as uuid_tool
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from plone import api
@@ -20,6 +21,22 @@ class ContextCardWidget(BrowserView):
     @staticmethod
     def can_edit():
         return not api.user.is_anonymous()
+
+    @property
+    def record(self):
+        return self.params['widget_data']
+
+    def has_content(self):
+        if self.widget_content():
+            return True
+        return False
+
+    def widget_uid(self):
+        try:
+            widget_id = self.record['id']
+        except (KeyError, TypeError):
+            widget_id = str(uuid_tool.uuid4())
+        return widget_id
 
     @staticmethod
     def normalizer():
