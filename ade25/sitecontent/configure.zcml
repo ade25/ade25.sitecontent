@@ -46,10 +46,7 @@
             handler="ade25.sitecontent.setuphandlers.setup_various"
     />
 
-    <plone:static
-        directory="resources"
-        type="theme"
-    />
+    <include file="upgrades.zcml" />
 
     <utility
         provides="ade25.sitecontent.interfaces.IResponsiveImagesTool"

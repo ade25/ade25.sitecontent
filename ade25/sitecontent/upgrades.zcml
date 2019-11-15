@@ -1,0 +1,18 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:i18n="http://namespaces.zope.org/i18n"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="ade25.sitecontent">
+
+    <genericsetup:upgradeStep
+            title="Update and cleanup behavior registration"
+            description="Update control panel and add widget default settings for site content'"
+            source="1"
+            destination="1001"
+            profile="ade25.sitecontent:default"
+            handler="ade25.sitecontent.upgrades.upgrade_1001"
+            sortkey="1"
+    />
+
+
+</configure>

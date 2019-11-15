@@ -22,10 +22,10 @@
   <property name="klass">ade25.sitecontent.contentpage.ContentPage</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
-     <element value="plone.app.contenttypes.behaviors.richtext.IRichText" />
-     <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
+     <element value="plone.namefromtitle" />
+     <element value="plone.basic"/>
+     <element value="plone.richtext" />
+     <element value="plone.leadimage" />
    </property>
 
   <!-- View information -->

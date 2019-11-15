@@ -21,13 +21,14 @@
   <property name="klass">ade25.sitecontent.sectionfolder.SectionFolder</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
-     <element value="plone.app.contenttypes.behaviors.richtext.IRichText" />
+    <element value="plone.namefromtitle" />
+    <element value="plone.basic"/>
+    <element value="plone.richtext" />
+    <element value="plone.leadimage" />
    </property>
 
   <!-- View information -->
-  <property name="link_target"></property>
+  <property name="link_target" />
   <property name="immediate_view">view</property>
   <property name="default_view">section-folder-view</property>
   <property name="view_methods">
