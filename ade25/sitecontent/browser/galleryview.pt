@@ -2,7 +2,7 @@
   tal:define="contained_images python:context.restrictedTraverse('@@folderListing')(portal_type='Image')">
   <div class="app-gallery" tal:define="images view/contained_images">
       <div class="project-gallery js-gallery">
-        <talblock tal:condition="images">
+        <tal:block tal:condition="images">
           <div class="app-gallery-cell project-gallery-item item" tal:repeat="item images">
             <tal:item tal:define="img python:view.image_tag(item)">
               <img class="xlazyload" src="${img/url}"
@@ -10,7 +10,7 @@
                 alt="" />
             </tal:item>
           </div>
-        </talblock>
+        </tal:block>
       </div>
   </div>
 </div>

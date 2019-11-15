@@ -8,6 +8,15 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ade25.sitecontent">
 
+    <!-- Control panels -->
+    <browser:page
+            name="ade25-site-content-controlpanel"
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            class=".controlpanel.Ade25SiteContentSettings"
+            permission="cmf.ManagePortal"
+            template="controlpanel.pt"
+    />
+
     <!-- section folder views -->
 
   <browser:page

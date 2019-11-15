@@ -16,6 +16,17 @@ IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='
 class ContentPageView(BrowserView):
     """ Folderish content page default view """
 
+    def panel_page_support_enabled(self):
+        context = aq_inner(self.context)
+        try:
+            from ade25.panelpage.behaviors.storage import IContentPanelStorage
+            if IContentPanelStorage.providedBy(context):
+                return True
+            else:
+                return False
+        except ImportError:
+            return False
+
     def has_leadimage(self):
         context = aq_inner(self.context)
         try:
@@ -77,6 +88,18 @@ class ContentPageView(BrowserView):
     def rendered_gallery(self):
         context = aq_inner(self.context)
         template = context.restrictedTraverse('@@gallery-view')()
+        return template
+
+    def content_widget(self, widget='base'):
+        context = aq_inner(self.context)
+        requested_widget = widget
+        widget_view_name = '@@content-widget-{0}'.format(
+            requested_widget
+        )
+        template = context.restrictedTraverse(widget_view_name)(
+            widget_type=requested_widget,
+            identifier=requested_widget
+        )
         return template
 
 

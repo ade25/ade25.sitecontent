@@ -4,7 +4,56 @@
         xmlns:z3c="http://namespaces.zope.org/z3c"
         i18n_domain="ade25.widgets">
 
+    <!-- Context preview widgets -->
+    <browser:page
+            for="*"
+            name="content-widget-context-card"
+            class=".card.ContextCardWidget"
+            template="card.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
 
+    <!-- Context filters -->
+    <browser:page
+            for="*"
+            name="content-widget-filter-keywords"
+            class=".filter.KeywordFilterWidget"
+            template="filter-keywords.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+    <!-- Content listings -->
+    <browser:page
+            for="*"
+            name="content-widget-listing-base"
+            class=".listing.BaseListingWidget"
+            template="listing-base.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="content-widget-listing-cards"
+            class=".listing.CardListingWidget"
+            template="listing-cards.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="content-widget-listing-cards-filterable"
+            class=".listing.FilterableCardListingWidget"
+            template="listing-cards-filterable.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
+
+
+    <!-- Gallery -->
     <browser:page
         for="*"
         name="content-widget-gallery"
@@ -13,5 +62,14 @@
         permission="zope2.View"
         layer="..interfaces.IAde25SitecontentLayer"
         />
+
+    <browser:page
+            for="*"
+            name="content-widget-gallery-slider"
+            class=".gallery.GalleryWidgetSlider"
+            template="gallery-slider.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25SitecontentLayer"
+    />
 
 </configure>

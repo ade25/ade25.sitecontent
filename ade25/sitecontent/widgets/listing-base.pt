@@ -1,0 +1,25 @@
+<div class="app-widget app-widget--listing app-widget__listing app-widget__listing--base app-widget--${context/UID}"
+    i18n:domain="ade25.sitecontent" tal:condition="python:view.has_content">
+    <div class="app-widget__header app-widget__header--listing">
+        <div class="app-widget__title" i18n:translate="">
+            Contents
+        </div>
+    </div>
+    <div class="app-widget__content">
+        <div class="app-widget__main" tal:define="items python:view.content_items">
+            <ul class="o-list">
+                <tal:items tal:repeat="item items">
+                    <li class="o-list__item">
+                        <a class="o-list__link"
+                                 tal:attributes="href python:item['url']"
+                                 tal:content="python:item['title']">
+                            Item Title
+                        </a>
+                    </li>
+                </tal:items>
+            </ul>
+        </div>
+        <div class="app-widget__footer">
+        </div>
+    </div>
+</div>

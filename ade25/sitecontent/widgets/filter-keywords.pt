@@ -1,0 +1,22 @@
+<tal:block tal:define="items python:view.available_keywords">
+    <ul class="c-filter-list" i18n:domain="ade25.sitecontent">
+        <li class="c-filter-list__item">
+            <a class="c-filter-list__link js-filter__link"
+               data-filter=".js-filter--reset"
+                     tal:attributes="href python:context.absolute_url()"
+                     i18n:translate="">
+                All
+            </a>
+        </li>
+        <tal:items tal:repeat="item items">
+            <li class="c-filter-list__item" tal:define="token python:view.normalized_token(item.token)">
+                <a class="c-filter-list__link js-filter__link"
+                         tal:attributes="href python:context.absolute_url() + '?subject=' + item.value;
+                        data-filter python:'.' + view.filter_value(item.value)"
+                         tal:content="python:item.title">
+                    Item Title
+                </a>
+            </li>
+        </tal:items>
+    </ul>
+</tal:block>

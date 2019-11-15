@@ -3,6 +3,7 @@
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
+from plone.supermodel import directives
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import provider
@@ -15,7 +16,7 @@ from ade25.sitecontent import MessageFactory as _
 class IGalleryEnabled(model.Schema):
     """Behavior providing a checkbox to toggle gallery display"""
 
-    model.fieldset(
+    directives.fieldset(
         'display',
         label=u"Display",
         fields=['displayGallery', 'displayPreviewCards']

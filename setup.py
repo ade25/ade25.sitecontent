@@ -37,7 +37,7 @@ setup(
         'plone.app.dexterity [relations]',
         'plone.app.relationfield',
         'plone.namedfile [blobs]',
-        'plone.formwidget.contenttree',
+        # 'plone.formwidget.contenttree',
     ],
     extras_require={
         'test': [

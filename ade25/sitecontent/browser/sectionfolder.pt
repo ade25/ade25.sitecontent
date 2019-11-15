@@ -9,6 +9,11 @@
 
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
+
+      <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+          <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
+      </section>
+
       <div class="app-page-header">
           <div class="app-page-title">
               <h1 class="app-page-headline" tal:content="context/Title">
@@ -19,14 +24,36 @@
                   ${context/Description}
           </p>
       </div>
+
+      <div class="o-page__main" tal:condition="python:view.panel_page_support_enabled()">
+
+          <section class="o-page__section" tal:condition="view/has_link_action">
+                  <div class="app-alert app-alert--default" tal:condition="python:view.is_authenticated">
+                      <div class="app-alert__title">
+                          <div class="app-alert__headline" i18n:translate="">Note</div>
+                      </div>
+                      <p i18n:translate="">This section is configured to automatically redirect. Since you are logged in as editor you are presented the link target instead.</p>
+                      <p><strong i18n:translate="">Link location:</strong>
+                          <a href="${view/get_link_action}">
+                                  ${view/get_link_action}
+                          </a>
+                      </p>
+                  </div>
+          </section>
+
+          <section class="o-page__section" tal:condition="not:python:view.panel_page_support_enabled()">
+
+          </section>
+      </div>
+
       <div class="app-page-body">
           <tal:redirect tal:condition="view/has_link_action">
               <div class="app-alert app-alert--default" tal:condition="python:view.is_authenticated">
                   <div class="app-alert__title">
-                      <div class="app-alert__headline">Note</div>
+                      <div class="app-alert__headline" i18n:translate="">Note</div>
                   </div>
-                  <p>This section is configured to automatically redirect. Since you are logged in as editor you are presented the link target instead.</p>
-                  <p><strong>Link location:</strong>
+                  <p i18n:translate="">This section is configured to automatically redirect. Since you are logged in as editor you are presented the link target instead.</p>
+                  <p><strong i18n:translate="">Link location:</strong>
                       <a href="${view/get_link_action}">
                               ${view/get_link_action}
                       </a>
@@ -34,9 +61,24 @@
               </div>
           </tal:redirect>
           <div class="app-page-text" id="parent-fieldname-text"
-                  tal:condition="context/text"
-                  tal:content="structure context/text/output" />
+                  tal:condition="python:context.text"
+                   tal:content="structure python:context.text.output">Body Text</div>
+
       </div>
+
+      <div class="o-page__main">
+          <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+              <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')"></tal:content-panels>
+          </section>
+      </div>
+
+      <div class="o-page__footer">
+          <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
+              <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='footer', mode='view')"></tal:content-panels>
+          </section>
+      </div>
+
+
   </metal:content-core>
 </metal:main>
 

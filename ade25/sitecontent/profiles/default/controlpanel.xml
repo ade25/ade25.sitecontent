@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel">
+
+    <configlet
+            title="Ade25 Site Content Settings"
+            action_id="ade25-site-content-controlpanel"
+            appId="ade25-site-content-controlpanel"
+            category="Products"
+            condition_expr=""
+            icon_expr=""
+            url_expr="string:${portal_url}/@@ade25-site-content-controlpanel"
+            visible="True">
+        <permission>Manage portal</permission>
+    </configlet>
+
+</object>

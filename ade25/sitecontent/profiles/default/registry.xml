@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry>
+
+    <records interface="ade25.sitecontent.browser.controlpanel.IAde25SiteContentControlPanel"
+             prefix="ade25.sitecontent" />
+
+</registry>

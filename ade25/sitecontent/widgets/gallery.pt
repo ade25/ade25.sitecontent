@@ -1,48 +1,67 @@
 <div class="app-widget app-widget--gallery app-widget--${context/UID}">
     <div class="app-widget__content">
         <div class="app-widget__header">
-            <div class="app-placeholder__cover" alt="">
                 Gallery Widget
-            </div>
         </div>
         <div class="app-widget__main">
-            <h1 class="app-placeholder__heading js-heading"></h1>
-            <p class="app-placeholder__paragraph js-paragraph"></p>
-            <p class="app-placeholder__paragraph js-paragraph"></p>
-            <p class="app-placeholder__paragraph js-paragraph"></p>
+            <div class="gallery gallery--cards js-widget--gallery">
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+                <div class="gallery__item">
+                    <div class="gallery__item-content" alt="">
+                        Gallery Image Card
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="app-widget__footer">
-            Render images in columns
+            Gallery Contextual links
         </div>
     </div>
 </div>
 <style>
-    .app-placeholder__cover {
-        position: relative;
-        width: 100%;
-        height: 2rem;
-        padding-bottom: 60%;
+    .gallery { /* Masonry container */
+        column-count: 4;
+        column-gap: 1em;
+    }
+
+    .gallery__item { /* Masonry bricks or child elements */
+        display: inline-block;
+        margin: 0 0 1em;
+        width: 33.3333%;
+    }
+    .gallery__item-content {
         background-color: #ccc;
-        overflow: hidden;
-    }
-    .app-placeholder__cover:after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2rem;
-        background: linear-gradient(90deg, rgba(0,0,0,0), rgba(255,255,255,0.15), rgba(0,0,0,0));
-        transform: translateX(-100%);
-        animation: loading 1.5s infinite;
-    }
-    .app-placeholder__heading {
-        width: 100%;
-        height: 35px;
-        background: #d8d8d8;
-        margin-bottom: 20px;
-    }
-    .app-placeholder__paragraph {
-        width: 90%;
-        height: 20px;
-        background: #d8d8d8;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        min-height: 6rem;
     }
 </style>
