@@ -57,4 +57,4 @@ def setup_various(context):
 
     register_content_types(portal)
 
-    register_widget_types(portal)
+    # register_widget_types(portal)
