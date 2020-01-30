@@ -3,4 +3,5 @@
     <!-- -*- extra stuff goes here -*- -->
     <object remove="True" name="ade25.sitecontent.sectionfolder" meta_type="Dexterity FTI" />
     <object remove="True" name="ade25.sitecontent.contentpage" meta_type="Dexterity FTI" />
+    <object remove="True" name="ade25.sitecontent.languagefolder" meta_type="Dexterity FTI" />
 </object>

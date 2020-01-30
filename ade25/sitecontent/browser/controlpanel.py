@@ -21,12 +21,15 @@ class IAde25SiteContentControlPanel(Interface):
         required=False,
     )
 
-    widget_settings = schema.Text(
-        title=_(u"Widget Settings JSON"),
-        description=_(u"Widget configuration registry storing a string "
-                      u"representation of a valid JSON settings array"),
-        required=False,
-        default=widget_utils.default_widget_configuration()
+    editable_content_widgets = schema.List(
+        title=_(u"Editable Page Sections"),
+        description=_(u"Select the page sections that allow editors "
+                      u"content widget managements."),
+        value_type=schema.Choice(
+            vocabulary='ade25.sitecontent.vocabularies.ContentPageSections'
+        ),
+        default=['page-main', ],
+        required=False
     )
 
 

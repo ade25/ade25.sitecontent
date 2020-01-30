@@ -14,4 +14,14 @@
             sortkey="1"
     />
 
+    <genericsetup:upgradeStep
+            title="Add language root handling"
+            description="Add language root folder content type and view'"
+            source="1001"
+            destination="1002"
+            profile="ade25.sitecontent:default"
+            handler="ade25.sitecontent.upgrades.upgrade_1002"
+            sortkey="1"
+    />
+
 </configure>

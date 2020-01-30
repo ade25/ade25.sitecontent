@@ -10,3 +10,10 @@ def upgrade_1001(setup):
     setup.runImportStepFromProfile(default_profile, 'typeinfo')
     # Update registry settings
     setup.runImportStepFromProfile(default_profile, 'plone.app.registry')
+
+
+def upgrade_1002(setup):
+    # New language folder content type
+    setup.runImportStepFromProfile(default_profile, 'typeinfo')
+    # Control panel changes
+    setup.runImportStepFromProfile(default_profile, 'plone.app.registry')
