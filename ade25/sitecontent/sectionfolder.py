@@ -2,7 +2,7 @@
 """Module providing section folder content type"""
 from plone.app.z3cform.widget import LinkFieldWidget
 from plone.dexterity.content import Container
-from plone.directives import form
+from plone.autoform import directives as form
 from plone.supermodel import model
 from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.interface import implementer
