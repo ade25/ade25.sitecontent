@@ -3,6 +3,7 @@
 from Acquisition import aq_inner
 from Products.Five.browser import BrowserView
 from plone import api
+from plone.api.exc import InvalidParameterError
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
@@ -15,6 +16,16 @@ IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='
 
 class ContentPageView(BrowserView):
     """ Folderish content page default view """
+
+    @staticmethod
+    def settings(registry_key, fallback_value=None):
+        try:
+            registry_settings = api.portal.get_registry_record(
+                'ade25.sitecontent.{0}'.format(registry_key)
+            )
+        except InvalidParameterError:
+            return fallback_value
+        return registry_settings
 
     def panel_page_support_enabled(self):
         context = aq_inner(self.context)
@@ -103,23 +114,50 @@ class ContentPageView(BrowserView):
         return template
 
     def widget_stored_data(self):
-        return dict()
+        settings = {
+            'display_read_more"': self.settings('display_read_more'),
+            'read_more_value': self.settings('read_more_text'),
+            'read_more_layout': self.settings('read_more_layout'),
+            'layout': self.settings('display_columns'),
+            'image_scale': self.settings('listing_cards_scale')
+        }
+        return settings
 
     def widget_content(self):
         widget_content = self.widget_stored_data()
         data = {
-            'title': widget_content.get('title', None),
-            'batch': widget_content['display_batch'],
-            'images': widget_content['display_images'],
-            'abstract': widget_content['display_abstract'],
-            'limit': widget_content.get('display_limit', None),
+            'uuid': api.content.get_uuid(self.context),
+            'title': None,
+            'batch': False,
+            'images': True,
+            'abstract': True,
+            'limit': None,
             'read_more': widget_content.get('display_read_more', True),
             'read_more_value': widget_content.get('read_more_text', True),
             'read_more_layout': widget_content.get('read_more_layout', True),
-            'layout': widget_content.get('display_columns', 'width-100'),
-            'items': self.content_items()
+            'layout': widget_content.get('display_columns', 'width-33'),
+            'image_scale': widget_content.get('image_scale', 'ratio-4:3'),
         }
         return data
+
+    def card_listing(self):
+        context = aq_inner(self.context)
+        listing = context.restrictedTraverse('@@content-widget-listing-cards')(
+            widget_data=self.widget_content()
+        )
+        return listing
+
+    def image_tag(self):
+        context = aq_inner(self.context)
+        figure = context.restrictedTraverse('@@figure')(
+            image_field_name='image',
+            caption_field_name='image_caption',
+            scale=self.settings('lead_image_scale', 'ratio-4:3'),
+            aspect_ratio=self.settings('lead_image_aspect_ratio', '4/3'),
+            lqip=True,
+            lazy_load=True
+        )
+        return figure
 
 
 class ContentPageBaseContent(BrowserView):
