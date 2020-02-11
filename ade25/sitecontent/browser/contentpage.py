@@ -102,6 +102,25 @@ class ContentPageView(BrowserView):
         )
         return template
 
+    def widget_stored_data(self):
+        return dict()
+
+    def widget_content(self):
+        widget_content = self.widget_stored_data()
+        data = {
+            'title': widget_content.get('title', None),
+            'batch': widget_content['display_batch'],
+            'images': widget_content['display_images'],
+            'abstract': widget_content['display_abstract'],
+            'limit': widget_content.get('display_limit', None),
+            'read_more': widget_content.get('display_read_more', True),
+            'read_more_value': widget_content.get('read_more_text', True),
+            'read_more_layout': widget_content.get('read_more_layout', True),
+            'layout': widget_content.get('display_columns', 'width-100'),
+            'items': self.content_items()
+        }
+        return data
+
 
 class ContentPageBaseContent(BrowserView):
     """Preview content page base content"""

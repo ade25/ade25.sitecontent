@@ -65,6 +65,10 @@
                 </tal:content-panels>
             </section>
 
+            <section class="o-page__section p-page__section--legacy-cards" tal:condition="python:not view.panel_page_support_enabled() and view.display_cards()">
+                <div tal:replace="structure python:context.restrictedTraverse('@@content-widget-listing-cards')()"></div>
+            </section>
+
         </div>
 
         <div class="o-page__footer">
