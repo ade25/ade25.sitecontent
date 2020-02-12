@@ -115,7 +115,8 @@ class ContentPageView(BrowserView):
 
     def widget_stored_data(self):
         settings = {
-            'display_read_more"': self.settings('display_read_more'),
+            'display_read_more': self.settings('display_read_more',
+                                                fallback_value=True),
             'read_more_value': self.settings('read_more_text'),
             'read_more_layout': self.settings('read_more_layout'),
             'layout': self.settings('display_columns'),
@@ -132,7 +133,7 @@ class ContentPageView(BrowserView):
             'images': True,
             'abstract': True,
             'limit': None,
-            'read_more': widget_content.get('display_read_more', True),
+            'display_read_more': widget_content['display_read_more'],
             'read_more_value': widget_content.get('read_more_text', True),
             'read_more_layout': widget_content.get('read_more_layout', True),
             'layout': widget_content.get('display_columns', 'width-33'),
