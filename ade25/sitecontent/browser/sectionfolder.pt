@@ -10,19 +10,31 @@
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
 
-      <section class="o-page__section" tal:condition="python:view.panel_page_support_enabled()">
-          <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
-      </section>
+      <div class="o-page__header">
+          <tal:toolbar tal:condition="python:view.panel_page_support_enabled()"
+                   tal:replace="structure python:context.restrictedTraverse('@@panel-editor-toolbar')()">
+              Content Panel Toolbar
+          </tal:toolbar>
 
-      <div class="app-page-header">
-          <div class="app-page-title">
-              <h1 class="app-page-headline" tal:content="context/Title">
-                      ${context/Title}
-              </h1>
+          <section class="o-page__section o-page__section--header-panels" tal:condition="python:view.panel_page_support_enabled()">
+              <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
+          </section>
+
+          <div class="o-page__section c-page-header">
+              <div class="c-page-header__title" tal:condition="python:context.Title()">
+                  <h1 class="c-page-header__headline c-page-header__headline--primary">
+                        <span tal:replace="python:context.Title()">
+                            Page Title</span>
+                  </h1>
+              </div>
+              <div class="c-page-header__subtitle" tal:condition="python:context.Description()">
+                  <p class="c-page-header__abstract"
+                           tal:content="python:context.Description()">
+                          ${context/Description}
+                  </p>
+              </div>
           </div>
-          <p class="app-page-abstract" tal:condition="context/Description">
-                  ${context/Description}
-          </p>
+
       </div>
 
       <div class="o-page__main" tal:condition="python:view.panel_page_support_enabled()">
