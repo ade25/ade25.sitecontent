@@ -129,14 +129,14 @@ class ContentPageView(BrowserView):
         data = {
             'uuid': api.content.get_uuid(self.context),
             'title': None,
-            'batch': False,
-            'images': True,
-            'abstract': True,
-            'limit': None,
+            'display_batch': False,
+            'display_images': True,
+            'display_abstract': True,
+            'display_limit': None,
             'display_read_more': widget_content['display_read_more'],
             'read_more_value': widget_content.get('read_more_text', True),
             'read_more_layout': widget_content.get('read_more_layout', True),
-            'layout': widget_content.get('display_columns', 'width-33'),
+            'display_columns': widget_content.get('display_columns', 'width-33'),
             'image_scale': widget_content.get('image_scale', 'ratio-4:3'),
         }
         return data
