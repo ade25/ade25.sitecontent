@@ -47,7 +47,7 @@
                 <tal:nogallery tal:condition="not:view/display_gallery">
                     <div class="app-page-leadimage" tal:condition="view/has_leadimage">
                         <div class="app-page__asset"
-                                 tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field_name='image_caption', scale='default', lqip=True, lazy_load=True)">
+                                 tal:define="responsive_image python:view.image_tag()">
                             <span tal:replace="structure responsive_image" />
                         </div>
                     </div>
@@ -66,6 +66,10 @@
                      tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='main', mode='view')">
                     Main Panels
                 </tal:content-panels>
+            </section>
+
+            <section class="o-page__section p-page__section--legacy-cards" tal:condition="python:not view.panel_page_support_enabled() and view.display_cards()">
+                <span tal:replace="structure python:view.card_listing()" />
             </section>
 
         </div>

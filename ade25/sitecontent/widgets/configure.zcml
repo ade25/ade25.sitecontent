@@ -25,23 +25,23 @@
     />
 
     <!-- Content listings -->
-    <browser:page
+    <!--<browser:page
             for="*"
             name="content-widget-listing-base"
             class=".listing.BaseListingWidget"
             template="listing-base.pt"
             permission="zope2.View"
             layer="..interfaces.IAde25SitecontentLayer"
-    />
+    />-->
 
-    <browser:page
+    <!--<browser:page
             for="*"
             name="content-widget-listing-cards"
             class=".listing.CardListingWidget"
             template="listing-cards.pt"
             permission="zope2.View"
             layer="..interfaces.IAde25SitecontentLayer"
-    />
+    />-->
 
     <browser:page
             for="*"
