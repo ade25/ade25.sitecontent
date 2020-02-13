@@ -10,7 +10,7 @@ from plone.supermodel.directives import fieldset
 from zope import schema
 from zope.interface import implementer
 
-from adk.site import _
+from ade25.sitecontent import MessageFactory as _
 
 
 class ILanguageFolder(model.Schema, IImageScaleTraversable):
