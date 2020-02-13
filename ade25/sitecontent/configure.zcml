@@ -53,4 +53,9 @@
         factory="ade25.sitecontent.imagetool.ResponsiveImagesTool"
         />
 
+    <!-- Vocabularies -->
+    <utility
+            name="ade25.sitecontent.vocabularies.ContentPageSections"
+            component="ade25.sitecontent.vocabulary.ContentPageSectionsVocabulary" />
+
 </configure>

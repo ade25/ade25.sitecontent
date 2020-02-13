@@ -21,16 +21,19 @@
                 <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
             </section>
 
-            <div class="o-page__title">
-                <h1 class="o-page__headline" tal:condition="python:context.Title()"
-                         tal:content="python:context.Title()">
-                    Page Title
-                </h1>
-            </div>
-            <div class="o-page__subtitle" tal:condition="python:context.Description()">
-                <p class="o-page__abstract" tal:content="python:context.Description()">
-                    Page Abstract
-                </p>
+            <div class="o-page__section c-page-header">
+                <div class="c-page-header__title" tal:condition="python:context.Title()">
+                    <h1 class="c-page-header__headline c-page-header__headline--primary">
+                        <span tal:replace="python:context.Title()">
+                            Page Title</span>
+                    </h1>
+                </div>
+                <div class="c-page-header__subtitle" tal:condition="python:context.Description()">
+                    <p class="c-page-header__abstract"
+                             tal:content="python:context.Description()">
+                            ${context/Description}
+                    </p>
+                </div>
             </div>
 
         </div>

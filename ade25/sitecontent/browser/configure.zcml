@@ -17,6 +17,15 @@
             template="controlpanel.pt"
     />
 
+    <!-- Language navigation root -->
+    <browser:page
+            for="ade25.sitecontent.languagefolder.ILanguageFolder"
+            name="language-root-view"
+            class="ade25.sitecontent.browser.languageroot.LanguageRootView"
+            template="language-root.pt"
+            permission="zope2.View"
+    />
+
     <!-- section folder views -->
 
   <browser:page
