@@ -72,9 +72,12 @@
                   </p>
               </div>
           </tal:redirect>
-          <div class="app-page-text" id="parent-fieldname-text"
-                  tal:condition="python:context.text"
-                   tal:content="structure python:context.text.output">Body Text</div>
+
+          <tal:bodytext tal:condition="exists:python:context.text">
+              <div class="app-page-text" id="parent-fieldname-text"
+                       tal:condition="python:context.text"
+                       tal:content="structure python:context.text.output">Body Text</div>
+          </tal:bodytext>
 
       </div>
 
