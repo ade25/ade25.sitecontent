@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      lang="en"
+         metal:use-macro="context/main_template/macros/master"
+         i18n:domain="ade25.sitecontent">
+<body>
+
+<metal:main fill-slot="main">
+    <metal:content-core define-macro="main">
+
+        <header class="o-page__header">
+            <div class="o-page__section c-page-header">
+                <div class="c-page-header__title">
+                    <h1 class="c-page-header__headline c-page-header__headline--primary">
+                        Language Selection
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="o-page__main">
+            <div class="o-page__section o-page__section--spacer">
+
+                <div class="c-language-selection" tal:define="languages python:view.available_languages()">
+
+                    <tal:languages tal:repeat="language languages">
+
+                        <a class="c-language-selection__item"
+                            tal:attributes="href python:language['url']">
+                            <div class="c-language-selection__item-aside">
+                                <svg class="o-icon o-icon--size-3 o-icon__ui--dots-dims">
+                                    <use xlink:href="/assets/symbol/svg/sprite.symbol.svg#ui--globe"></use>
+                                </svg>
+                            </div>
+                            <div class="c-language-selection__item-main c-widget-editor__item-main--centered">
+                                <h5 class="c-widget-editor__item-title"
+                                    tal:content="python:language['title']">
+                                    Language Title
+                                </h5>
+                            </div>
+                            <div class="c-language-selection__item-actions">
+                                <div class="c-button c-button--default c-widget-editor__item-link">
+                                    <svg class="o-icon o-icon--size-1 o-icon__ui--chevron-dims">
+                                        <use xlink:href="/assets/symbol/svg/sprite.symbol.svg#ui--chevron"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                    </tal:languages>
+                </div>
+
+            </div>
+        </div>
+
+
+    </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+

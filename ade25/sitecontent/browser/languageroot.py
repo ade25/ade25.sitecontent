@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """Module providing views for the folderish content page type"""
 from Acquisition import aq_inner
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.Five.browser import BrowserView
+from ade25.base.utils import get_acquisition_chain
+from ade25.sitecontent.languagefolder import ILanguageFolder
 from plone import api
 from plone.app.z3cform.utils import replace_link_variables_by_paths
 
@@ -49,3 +52,47 @@ class LanguageRootView(BrowserView):
     @staticmethod
     def is_authenticated():
         return not api.user.is_anonymous()
+
+
+class LanguageRootSwitcher(BrowserView):
+    """ Site root language switcher """
+
+    @staticmethod
+    def available_languages():
+        languages = list()
+        default_title = api.portal.translate(
+            "DE",
+            'ade25.sitecontent',
+            api.portal.get_current_language()
+        )
+        languages.append(
+            {
+                "id": "de",
+                "title": default_title,
+                "url": api.portal.get().absolute_url()
+            }
+        )
+        brains = api.content.find(
+            context=api.portal.get(),
+            depth=1,
+            object_provides=ILanguageFolder,
+        )
+        for brain in brains:
+            languages.append({
+                "id": brain.getId,
+                "title": brain.Title,
+                "url": brain.getURL()
+            })
+        return languages
+
+    @staticmethod
+    def active_language(item_uid):
+        context = api.content.get(UID=item_uid)
+        default_language = 'de'
+        if ISiteRoot.providedBy(context):
+            return default_language
+        acquisition_chain = get_acquisition_chain(context)
+        for node in acquisition_chain:
+            if ILanguageFolder.providedBy(node):
+                return node.getId
+        return default_language

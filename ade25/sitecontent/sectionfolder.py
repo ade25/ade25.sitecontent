@@ -18,7 +18,7 @@ class ISectionFolder(model.Schema, IImageScaleTraversable):
 
     model.fieldset(
         'redirect',
-        label=u"Redirect",
+        label=_(u"Redirect"),
         fields=['link', ]
     )
 
@@ -29,6 +29,24 @@ class ISectionFolder(model.Schema, IImageScaleTraversable):
                       u"used as redirection target when section is accessed."
                       u"Logged in users will see the target link instead."),
         required=False,
+    )
+
+    model.fieldset(
+        'settings',
+        label=_(u"Settings"),
+        fields=['display_page_header', ]
+    )
+
+    display_page_header = schema.Bool(
+        title=_(u"Display page header"),
+        description=_(u"When activated the view will display a page header consisting "
+                      u"of the default title and description. It is recommended to "
+                      u"to use a page header widget for display and tread the objects"
+                      u"title and description as metadata. This allows for short "
+                      u"navigation titles and can be used for search engine "
+                      u"optimization."),
+        required=False,
+        default=False,
     )
 
 

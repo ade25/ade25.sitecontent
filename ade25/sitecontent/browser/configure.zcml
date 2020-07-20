@@ -26,6 +26,15 @@
             permission="zope2.View"
     />
 
+    <!-- Language selection -->
+    <browser:page
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            name="language-root-switcher"
+            class="ade25.sitecontent.browser.languageroot.LanguageRootSwitcher"
+            template="language-root-switcher.pt"
+            permission="zope2.View"
+    />
+
     <!-- section folder views -->
 
   <browser:page
