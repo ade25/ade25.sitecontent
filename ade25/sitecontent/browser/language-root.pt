@@ -19,7 +19,7 @@
             <tal:content-panels tal:replace="structure python:context.restrictedTraverse('@@content-panels')(identifier=context.UID(), section='header', mode='view')"></tal:content-panels>
         </section>
 
-        <header class="o-page__header">
+        <header class="o-page__header" tal:condition="python:context.display_page_header">
             <div class="o-page__section c-page-header">
                 <div class="c-page-header__title">
                     <h1 class="c-page-header__headline" tal:content="python:context.Title()">
